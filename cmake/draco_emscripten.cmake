@@ -23,11 +23,6 @@ macro(draco_check_emscripten_environment)
       FATAL_ERROR
         "Python required for Emscripten builds, but cmake cannot find it.")
   endif()
-  if(NOT EXISTS "$ENV{EMSCRIPTEN}")
-    message(
-      FATAL_ERROR
-        "The EMSCRIPTEN environment variable must be set. See README.md.")
-  endif()
 endmacro()
 
 # Obtains the required Emscripten flags for Draco targets.
