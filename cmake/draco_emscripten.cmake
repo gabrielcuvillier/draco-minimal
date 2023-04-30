@@ -47,11 +47,8 @@ macro(draco_get_required_emscripten_flags)
   endif()
 
   # Use 'Oz' optimization level (instead of Os) on Clang
-  if (CMAKE_CXX_COMPILER_ID MATCHES "[Cc][Ll][Aa][Nn][Gg]")
-    string(REGEX MATCH "-Os" IS_Os_CXX "${CMAKE_CXX_FLAGS_MINSIZEREL}")
-    if (IS_Os_CXX)
-      list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-Oz")
-    endif ()
+  if (CMAKE_BUILD_TYPE MATCHES "MinSizeRel")
+    list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-Oz")
   endif()
 
   if(DRACO_JS_GLUE)
