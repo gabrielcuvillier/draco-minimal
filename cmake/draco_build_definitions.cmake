@@ -90,7 +90,7 @@ macro(draco_set_build_definitions)
   endif()
 
   if(NOT MSVC)
-    if ((UNIX OR MINGW) AND (${CMAKE_SIZEOF_VOID_P} EQUAL 8)))
+    if ((UNIX OR MINGW) AND (${CMAKE_SIZEOF_VOID_P} EQUAL 8))
       # Ensure 64-bit platforms can support large files.
       list(APPEND draco_defines "_LARGEFILE_SOURCE" "_FILE_OFFSET_BITS=64")
     endif()
