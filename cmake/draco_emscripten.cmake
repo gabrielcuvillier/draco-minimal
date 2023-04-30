@@ -46,6 +46,14 @@ macro(draco_get_required_emscripten_flags)
       "draco_get_required_emscripten_flags: FLAG_LIST_VAR_LINKER required")
   endif()
 
+  # Use 'Oz' optimization level (instead of Os) on Clang
+  if (CMAKE_CXX_COMPILER_ID MATCHES "[Cc][Ll][Aa][Nn][Gg]")
+    string(REGEX MATCH "-Os" IS_Os_CXX "${CMAKE_CXX_FLAGS_MINSIZEREL}")
+    if (IS_Os_CXX)
+      list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-Oz")
+    endif ()
+  endif()
+
   if(DRACO_JS_GLUE)
     unset(required_flags)
     # TODO(tomfinegan): Revisit splitting of compile/link flags for Emscripten,
