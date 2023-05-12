@@ -52,7 +52,7 @@ macro(draco_get_required_emscripten_flags)
   endif()
 
   if (CMAKE_BUILD_TYPE MATCHES "MinSizeRel")
-    list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-finline-hint-functions")
+    list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-fno-inline-functions")
   endif()
 
     if(DRACO_JS_GLUE)
