@@ -51,7 +51,13 @@ macro(draco_get_required_emscripten_flags)
     list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-Oz")
   endif()
 
-  if(DRACO_JS_GLUE)
+  if (CMAKE_BUILD_TYPE MATCHES "MinSizeRel")
+    list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-finline-hint-functions")
+  endif()
+
+    list(APPEND ${em_FLAG_LIST_VAR_COMPILER} "-fwasm-exceptions")
+
+    if(DRACO_JS_GLUE)
     unset(required_flags)
     # TODO(tomfinegan): Revisit splitting of compile/link flags for Emscripten,
     # and drop -Wno-unused-command-line-argument. Emscripten complains about
